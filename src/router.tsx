@@ -2,11 +2,12 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 
 import About from './pages/About/About';
+import Account from './pages/Account/Account';
 import Checkout from './pages/Checkout/Checkout';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Register from './pages/Register/Register';
-import Account from './pages/Account/Account';
 
 const router = createBrowserRouter([
   {
@@ -36,8 +37,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/account',
-        element: <Account />
-      }
+        element: <Account />,
+      },
+      {
+        path: '/details',
+        element: <ProductDetail />,
+      },
     ],
   },
 ]);
