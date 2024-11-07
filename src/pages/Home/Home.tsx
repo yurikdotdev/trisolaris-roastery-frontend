@@ -1,7 +1,11 @@
+import TopBar from '@/components/TopBar';
+
 function Home() {
   return (
-    <div>Home</div>
-  )
+    <div className='bg-gray-700 h-screen'>
+      <TopBar />
+    </div>
+  );
 }
 
-export default Home
+export default Home;
