@@ -1,10 +1,13 @@
 import TopBar from '@/components/TopBar';
+import Header from './components/Header';
+import Container from '@/components/Container';
 
 function Home() {
   return (
-    <div className='bg-gray-700 h-screen'>
+    <Container className='bg-gray-500 h-screen'>
       <TopBar />
-    </div>
+      <Header />
+    </Container>
   );
 }
 
