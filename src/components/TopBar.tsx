@@ -9,7 +9,7 @@ import { ShoppingCartIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Input } from './ui/input';
 
-const USER_EXIST = true;
+const USER_EXIST = false;
 
 function TopBar() {
   return (
