@@ -14,6 +14,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
+import Footer from '@/components/Footer';
 
 function ProductDetail() {
   return (
@@ -63,6 +64,8 @@ function ProductDetail() {
       </div>
 
       <ProductContainer n={3} />
+
+      <Footer />
     </Container>
   );
 }
