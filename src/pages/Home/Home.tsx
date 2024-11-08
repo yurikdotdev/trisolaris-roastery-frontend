@@ -9,7 +9,7 @@ function Home() {
     <Container>
       <TopBar />
       <Header title="Home" />
-      <ProductContainer n={30} />
+      <ProductContainer n={6} />
       <Footer />
     </Container>
   );

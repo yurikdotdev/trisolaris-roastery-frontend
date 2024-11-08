@@ -17,14 +17,14 @@ function TopBar() {
       <div className="flex items-center gap-8">
         <Link to="/">Logo</Link>
         <DropdownMenu>
-          <DropdownMenuTrigger>Origins</DropdownMenuTrigger>
+          <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>
-              <Link to={'/indonesia'}>Indonesia</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>Brazil</DropdownMenuItem>
-            <DropdownMenuItem>Columbia</DropdownMenuItem>
-            <DropdownMenuItem>Kenya</DropdownMenuItem>
+            <Link to="/products">
+              <DropdownMenuItem>Indonesia</DropdownMenuItem>
+              <DropdownMenuItem>Brazil</DropdownMenuItem>
+              <DropdownMenuItem>Columbia</DropdownMenuItem>
+              <DropdownMenuItem>Kenya</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -60,9 +60,7 @@ function TopBar() {
           <Avatar>
             {' '}
             <AvatarFallback>
-              <Link to={'/account'}>
-              JD
-              </Link>
+              <Link to={'/account'}>JD</Link>
             </AvatarFallback>{' '}
           </Avatar>
         ) : (
