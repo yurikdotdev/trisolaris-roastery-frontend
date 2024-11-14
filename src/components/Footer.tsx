@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { getYear } from '@/lib/utils';
 
 function Footer() {
   return (
-    <div className="bottom-0 w-full bg-green-300 py-4 mt-auto">
-      <Link to={'/about'}>About Us</Link>
-      <div className="text-center">
-        <p>&copy; 2024 Trisolaris Coffee. All rights reserved.</p>
+    <footer className="h-52 w-full bg-custom-bgLight font-newsreader text-custom-textLight dark:bg-custom-bgDark dark:text-custom-textDark">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-2">
+        <p className="font-medium">Trisolaris Roaster Co.</p>
+        <p className="text-sm">&copy; {getYear()}</p>
       </div>
-    </div>
+    </footer>
   );
 }
 

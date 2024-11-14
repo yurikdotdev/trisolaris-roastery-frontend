@@ -8,9 +8,9 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => (
-  <BaseLayout>
+  <BaseLayout className="flex min-h-screen flex-col">
     <TopBar />
-    {children}
+    <main className="flex-grow">{children}</main>
     <Footer />
   </BaseLayout>
 );
