@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 
+import { ROUTES } from '@/config/routes'
+
 import About from './pages/About/About';
 import Account from './pages/Account/Account';
 import Checkout from './pages/Checkout/Checkout';
@@ -17,37 +19,37 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/',
+        path: ROUTES.HOME,
         element: <Home />,
       },
       {
-        path: '/about',
+        path: ROUTES.ABOUT,
         element: <About />,
       },
       {
-        path: '/checkout',
+        path: ROUTES.CHECKOUT,
         element: <Checkout />,
       },
       {
-        path: '/login',
+        path: ROUTES.LOGIN,
         element: <Login />,
       },
       {
-        path: '/register',
+        path: ROUTES.REGISTER,
         element: <Register />,
       },
       {
-        path: '/account',
+        path: ROUTES.ACCOUNT,
         element: <Account />,
       },
       {
-        path: '/details',
+        path: ROUTES.DETAILS,
         element: <ProductDetail />,
       },
       {
-        path: '/products',
+        path: ROUTES.PRODUCTS,
         element: <Products />,
-      }
+      },
     ],
   },
 ]);
