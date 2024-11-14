@@ -1,11 +1,11 @@
-import Container from '@/components/Container';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import BaseLayout from '@/components/layouts/BaseLayout';
 import TopBar from '@/components/TopBar';
 
 function Checkout() {
   return (
-    <Container>
+    <BaseLayout>
       <TopBar />
       <Header title="Checkout" />
       <div className="mx-auto max-w-4xl p-6">
@@ -93,7 +93,7 @@ function Checkout() {
         </div>
       </div>
       <Footer />
-    </Container>
+    </BaseLayout>
   );
 }
 

@@ -1,11 +1,11 @@
-import Container from '@/components/Container';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import BaseLayout from '@/components/layouts/BaseLayout';
 import TopBar from '@/components/TopBar';
 
 function Account() {
   return (
-    <Container>
+    <BaseLayout>
       <TopBar />
       <Header title="Account" />
       <div className="mx-auto mt-6 max-w-2xl rounded-md bg-white p-6 shadow-md">
@@ -67,7 +67,7 @@ function Account() {
         </form>
       </div>
       <Footer />
-    </Container>
+    </BaseLayout>
   );
 }
 

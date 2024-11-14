@@ -1,12 +1,12 @@
-import Container from '@/components/Container';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import BaseLayout from '@/components/layouts/BaseLayout';
 import ProductContainer from '@/components/ProductContainer';
 import TopBar from '@/components/TopBar';
 
 function Products() {
   return (
-    <Container>
+    <BaseLayout>
       <TopBar />
       <Header title="Products" />
       <ProductContainer n={12} />
@@ -26,7 +26,7 @@ function Products() {
         </button>
       </div>
       <Footer />
-    </Container>
+    </BaseLayout>
   );
 }
 

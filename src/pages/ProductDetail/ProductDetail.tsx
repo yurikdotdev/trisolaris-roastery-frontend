@@ -1,9 +1,10 @@
-import Container from '@/components/Container';
 import Header from '@/components/Header';
+import BaseLayout from '@/components/layouts/BaseLayout';
 import TopBar from '@/components/TopBar';
 
 import { Slash } from 'lucide-react';
 
+import Footer from '@/components/Footer';
 import ProductContainer from '@/components/ProductContainer';
 import {
   Breadcrumb,
@@ -14,11 +15,10 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
-import Footer from '@/components/Footer';
 
 function ProductDetail() {
   return (
-    <Container>
+    <BaseLayout>
       <TopBar />
       <Header title="Product Detail" />
       <Breadcrumb>
@@ -66,7 +66,7 @@ function ProductDetail() {
       <ProductContainer n={3} />
 
       <Footer />
-    </Container>
+    </BaseLayout>
   );
 }
 

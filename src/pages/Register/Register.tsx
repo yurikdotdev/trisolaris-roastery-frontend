@@ -1,4 +1,4 @@
-import Container from '@/components/Container';
+import BaseLayout from '@/components/layouts/BaseLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Register() {
   return (
-    <Container className="flex h-screen flex-col items-center justify-center">
+    <BaseLayout className="flex h-screen flex-col items-center justify-center">
       <div className="w-full max-w-md space-y-8 rounded bg-white p-6 shadow-lg">
         <h2 className="text-center text-2xl font-bold">Register</h2>
         <form className="space-y-4">
@@ -57,7 +57,7 @@ function Register() {
           </Link>
         </p>
       </div>
-    </Container>
+    </BaseLayout>
   );
 }
 
