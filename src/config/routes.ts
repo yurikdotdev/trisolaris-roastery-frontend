@@ -7,4 +7,8 @@ export const ROUTES = {
   ACCOUNT: '/account',
   DETAILS: '/details',
   PRODUCTS: '/products',
+  SUBSCRIPTION: '/',
+  LEARN: '/',
+  LOCATIONS: '/',
 };
+
