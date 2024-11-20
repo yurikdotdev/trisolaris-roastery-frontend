@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 
-import { ROUTES } from '@/config/routes'
+import { ROUTES } from '@/config/routes';
 
 import About from './pages/About/About';
 import Account from './pages/Account/Account';
-import Checkout from './pages/Checkout/Checkout';
+import Cart from './pages/Cart/Cart';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
-import Register from './pages/Register/Register';
 import Products from './pages/Products/Products';
+import Register from './pages/Register/Register';
 
 const router = createBrowserRouter([
   {
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: ROUTES.CHECKOUT,
-        element: <Checkout />,
+        path: ROUTES.CART,
+        element: <Cart />,
       },
       {
         path: ROUTES.LOGIN,

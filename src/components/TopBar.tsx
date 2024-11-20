@@ -73,7 +73,7 @@ const Actions = () => (
       <Link to={ROUTES.LOGIN}>Sign in</Link>
     </button>
     <ActionButton icon={<LucideSearch />} />
-    <Link to={ROUTES.CHECKOUT}>
+    <Link to={ROUTES.CART}>
       {' '}
       <ActionButton icon={<LucideShoppingBag />} />{' '}
     </Link>
@@ -92,7 +92,7 @@ const ResponsiveMenu = ({ isMenuOpen }: { isMenuOpen: boolean }) => (
         Search
       </button>
       <Link
-        to={ROUTES.CHECKOUT}
+        to={ROUTES.CART}
         className="flex w-full items-center justify-start border-t p-4"
       >
         <LucideShoppingBag className="mr-2 h-5 w-4" />
