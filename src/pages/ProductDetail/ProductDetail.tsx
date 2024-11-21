@@ -9,6 +9,10 @@ function ProductDetail() {
   const { data, error, getProductById } = useProducts();
   const { setQuantity, handleAddToCart } = useCart();
 
+  if (!productId) {
+    return <div>Product not found</div>;
+  }
+
   const product = getProductById(productId);
 
   if (!product) {

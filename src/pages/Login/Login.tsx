@@ -1,4 +1,4 @@
-import BaseLayout from '@/components/layouts/BaseLayout';
+import MainLayout from '@/components/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 function Login() {
   return (
-    <BaseLayout className="flex h-screen flex-col items-center justify-center">
+    <MainLayout
+      title="Login | Trisolaris Roastery"
+    >
       <div className="w-full max-w-md space-y-8 rounded bg-white p-6 shadow-lg">
         <h2 className="text-center text-2xl font-bold">Login</h2>
         <form className="space-y-4">
@@ -46,7 +48,7 @@ function Login() {
           </Link>
         </p>
       </div>
-    </BaseLayout>
+    </MainLayout>
   );
 }
 
