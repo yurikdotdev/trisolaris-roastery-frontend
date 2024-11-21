@@ -5,7 +5,7 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   ACCOUNT: '/account',
-  DETAILS: '/details/:productId',
+  DETAILS: '/products/:productId',
   PRODUCTS: '/products',
   SUBSCRIPTION: '/',
   LEARN: '/',

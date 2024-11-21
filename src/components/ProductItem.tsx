@@ -1,23 +1,27 @@
+import { convertPrice } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import type { Product } from '../types';
 
-function ProductItem() {
+function ProductItem({ product }: { product: Product }) {
   return (
     <Link
-      to={'/details/${product.id}'}
-      className="justify-between rounded-lg flex h-96 w-96 flex-col p-2 align-middle transition duration-300 ease-in-out hover:opacity-100 md:opacity-90"
+      to={`/products/${product.id}`}
+      className="flex h-96 w-96 flex-col justify-between rounded-lg p-2 align-middle transition duration-300 ease-in-out hover:opacity-100 md:opacity-90"
     >
       <img
-        src="https://cdn.dribbble.com/users/1622978/screenshots/16873134/media/7f5d72bce5b94fe1ae56484394de673f.jpg?compress=1&resize=1600x1200&vertical=top"
-        className="w-full rounded-lg shadow-sm"
-        alt="Product Image"
+        src={product.imageUrl}
+        className="h-96 w-96 rounded-lg object-cover shadow-sm"
+        alt={product.name}
       />
 
       <div className="flex items-center justify-between gap-1 p-3">
         <div className="flex flex-col">
-          <p className="text-sm text-custom-accent">Indonesia</p>
-          <h1 className="text-lg font-medium">Aceh Gayo</h1>
+          <p className="text-sm text-custom-accent">{product.category}</p>
+          <h1 className="text-lg font-medium">{product.name}</h1>
         </div>
-        <p className="text-lg font-medium font-newsreader">Rp.120.000</p>
+        <p className="font-newsreader text-lg font-medium">
+          {convertPrice(product.price)}
+        </p>
       </div>
     </Link>
   );
