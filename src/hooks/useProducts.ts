@@ -8,5 +8,9 @@ export const useProducts = () => {
     fetcher
   );
 
-  return { data, error };
+  const getProductById = (id: string): Product => {
+    return data?.find((product) => product.id === id) as Product;
+  } 
+
+  return { data, error, getProductById };
 };

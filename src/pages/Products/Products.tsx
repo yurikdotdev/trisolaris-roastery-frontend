@@ -14,8 +14,6 @@ function Products() {
     return <div>Loading...</div>;
   }
 
-  console.log('Fetched products:', data);
-
   return (
     <MainLayout title="All Products | Trisolaris Roastery">
       <ProductContainer products={data} />

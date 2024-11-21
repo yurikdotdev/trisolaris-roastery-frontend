@@ -1,12 +1,19 @@
 import MainLayout from '@/components/layouts/MainLayout';
+import { useCart } from '@/hooks/useCart';
 import { useProducts } from '@/hooks/useProducts';
-import type { Product } from '@/types';
-import { useParams } from 'react-router-dom';
 import { convertPrice } from '@/lib/utils';
+import { useParams } from 'react-router-dom';
 
 function ProductDetail() {
   const { productId } = useParams();
-  const { data, error } = useProducts();
+  const { data, error, getProductById } = useProducts();
+  const { setQuantity, handleAddToCart } = useCart();
+
+  const product = getProductById(productId);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   if (error) {
     console.error('Error fetching product data:', error);
@@ -15,12 +22,6 @@ function ProductDetail() {
 
   if (!data) {
     return <div>Loading...</div>;
-  }
-
-  const product: Product = data.find((product) => product.id === productId);
-
-  if (!product) {
-    return <div>Product not found</div>;
   }
 
   return (
@@ -48,9 +49,15 @@ function ProductDetail() {
             <input
               type="number"
               className="w-1/6 bg-custom-bgLight p-4 text-lg text-custom-textLight"
-              placeholder="0"
+              placeholder="1"
+              min="1"
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
-            <button className="w-full bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight dark:shadow-stone-800">
+            <button
+              type="submit"
+              className="w-full bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight dark:shadow-stone-800"
+              onClick={() => handleAddToCart(product)}
+            >
               Add to Cart
             </button>
           </div>
