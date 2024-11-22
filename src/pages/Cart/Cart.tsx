@@ -1,6 +1,7 @@
 import MainLayout from '@/components/layouts/MainLayout';
 import { useCart } from '@/hooks/useCart';
 import { useProducts } from '@/hooks/useProducts';
+import { convertPrice } from '@/lib/utils';
 import CartItem from '@/pages/Cart/components/CartItem';
 import { Trash2 } from 'lucide-react';
 
@@ -20,15 +21,12 @@ function Cart() {
           <h1>Your cart is empty</h1>
         ) : (
           <>
-            <h1 className="text-3xl">Your Cart (4)</h1>
-            <button>
-              <Trash2
-                onClick={() => handleClearCart()}
-                className="h-5 w-5 cursor-pointer"
-              />
+            <h1 className="text-3xl">Your Cart</h1>
+            <button onClick={handleClearCart}>
+              <Trash2 className="h-5 w-5 cursor-pointer" />
             </button>
             <div className="flex w-full flex-col items-center justify-center gap-4">
-                {products.map((product) => {
+              {products.map((product) => {
                 return (
                   <CartItem
                     product={product}
@@ -39,7 +37,9 @@ function Cart() {
               })}
             </div>
             <div className="flex w-full flex-col items-end gap-4">
-              <h1 className="font-newsreader text-3xl">{getTotalPrice}</h1>
+              <h1 className="font-newsreader text-3xl">
+                {convertPrice(getTotalPrice)}
+              </h1>
               <button className="w-96 bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight dark:shadow-stone-800">
                 Checkout
               </button>

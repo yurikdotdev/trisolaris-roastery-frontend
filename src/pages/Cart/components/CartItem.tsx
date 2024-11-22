@@ -1,4 +1,5 @@
 import { useCart } from '@/hooks/useCart';
+import { convertPrice } from '@/lib/utils';
 import { Product } from '@/types';
 import { Trash } from 'lucide-react';
 
@@ -20,7 +21,7 @@ function CartItem({ product, quantity }: CartItemProps) {
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="font-medium md:text-lg">{product.name}</h1>
         <p className="font-newsreader text-lg font-medium md:text-lg">
-          {product.price}
+          {product.price ? convertPrice(product.price) : 'Loading...'}
         </p>
       </div>
       <div className="flex items-center gap-2">
