@@ -1,10 +1,11 @@
 import useSWR from 'swr';
 import { fetcher } from '@/lib/fetcher';
 import type { Product } from '@/types';
+import { API } from '@/config';
 
 export const useProducts = () => {
-  const { data, error } = useSWR<Product[]>(
-    'http://localhost:5000/products',
+  const { data, error, isLoading } = useSWR<Product[]>(
+    API.PRODUCTS,
     fetcher
   );
 
@@ -12,5 +13,5 @@ export const useProducts = () => {
     return data?.find((product) => product.id === id) as Product
   } 
 
-  return { data, error, getProductById };
+  return { data, error, isLoading, getProductById };
 };

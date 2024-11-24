@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import Footer from '../Footer';
-import TopBar from '../TopBar';
+import Footer from '../components/footer/Footer';
+import TopBar from '../components/header/TopBar/TopBar';
 import BaseLayout from './BaseLayout';
 
 interface MainLayoutProps {

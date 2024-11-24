@@ -1,6 +1,6 @@
 import { convertPrice } from '@/lib/utils';
 import { Link } from 'react-router-dom';
-import type { Product } from '../types';
+import type { Product } from '../../types';
 
 function ProductItem({ product }: { product: Product }) {
   return (

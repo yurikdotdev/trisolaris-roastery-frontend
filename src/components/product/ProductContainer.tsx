@@ -1,5 +1,5 @@
+import type { Product } from '../../types';
 import ProductItem from './ProductItem';
-import type { Product } from '../types';
 
 function ProductContainer({ products }: { products: Product[] }) {
   return (

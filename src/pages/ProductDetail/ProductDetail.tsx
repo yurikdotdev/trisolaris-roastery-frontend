@@ -1,12 +1,14 @@
-import MainLayout from '@/components/layouts/MainLayout';
+import { SITE } from '@/config';
 import { useCart } from '@/hooks/useCart';
 import { useProducts } from '@/hooks/useProducts';
+import ErrorLayout from '@/layouts/ErrorLayout';
+import MainLayout from '@/layouts/MainLayout';
 import { convertPrice } from '@/lib/utils';
 import { useParams } from 'react-router-dom';
 
 function ProductDetail() {
   const { productId } = useParams();
-  const { data, error, getProductById } = useProducts();
+  const { data, error, isLoading, getProductById } = useProducts();
   const { setQuantity, handleAddToCart } = useCart();
 
   if (!productId) {
@@ -16,7 +18,7 @@ function ProductDetail() {
   const product = getProductById(productId);
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <ErrorLayout errorCode="404" text="PRODUCT NOT FOUND" />;
   }
 
   if (error) {
@@ -25,12 +27,16 @@ function ProductDetail() {
   }
 
   if (!data) {
+    return <div>No data</div>;
+  }
+
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <MainLayout title={`${product.name} | Trisolaris Roastery Co.`}>
-      <div className="flex flex-col gap-8 px-8 py-12 md:max-w-7xl md:flex-row">
+    <MainLayout title={`${product.name} | ${SITE.SITE_NAME}`}>
+      <div className="flex flex-col md:gap-20 gap-6 p-6 md:p-12  md:max-w-7xl md:flex-row">
         <img
           src={product.imageUrl}
           className="rounded-lg shadow-sm md:max-w-xl"

@@ -1,6 +1,7 @@
-import MainLayout from '@/components/layouts/MainLayout';
+import { SITE } from '@/config';
 import { useCart } from '@/hooks/useCart';
 import { useProducts } from '@/hooks/useProducts';
+import MainLayout from '@/layouts/MainLayout';
 import { convertPrice } from '@/lib/utils';
 import CartItem from '@/pages/Cart/components/CartItem';
 import { Trash2 } from 'lucide-react';
@@ -15,16 +16,19 @@ function Cart() {
   }));
 
   return (
-    <MainLayout title="Cart | Trisolaris Roastery">
+    <MainLayout title={`Cart | ${SITE.SITE_NAME}`}>
       <div className="flex w-full flex-col items-center gap-8 p-8">
         {cart.length === 0 ? (
           <h1>Your cart is empty</h1>
         ) : (
           <>
-            <h1 className="text-3xl">Your Cart</h1>
-            <button onClick={handleClearCart}>
-              <Trash2 className="h-5 w-5 cursor-pointer" />
-            </button>
+            <div className="flex w-full items-center justify-between p-4">
+              <h1 className="text-3xl font-bold">Your Cart</h1>
+              <button onClick={handleClearCart}>
+                <Trash2 className="h-5 w-5 cursor-pointer" />
+              </button>
+            </div>
+
             <div className="flex w-full flex-col items-center justify-center gap-4">
               {products.map((product) => {
                 return (
@@ -37,11 +41,12 @@ function Cart() {
               })}
             </div>
             <div className="flex w-full flex-col items-end gap-4">
-              <h1 className="font-newsreader text-3xl">
+              <h1 className="font-newsreader text-2xl">
+                The total amount for your purchase is{' '}
                 {convertPrice(getTotalPrice)}
               </h1>
-              <button className="w-96 bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight dark:shadow-stone-800">
-                Checkout
+              <button className="w-full max-w-sm bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight dark:shadow-stone-800">
+                Proceed to Payment
               </button>
             </div>
           </>

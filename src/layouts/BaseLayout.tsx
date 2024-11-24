@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { ScrollRestoration } from 'react-router-dom';
 
 interface BaseLayoutProps {
   title: string;
@@ -19,6 +20,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
     <div
       className={`container mx-auto bg-custom-bgLight font-roboto text-custom-textLight dark:bg-custom-bgDark dark:text-custom-textDark ${className}`}
     >
+      <ScrollRestoration />
       <hr className="dark:border-custom-accent-dark border-t-2 border-custom-accent" />
       {children}
     </div>
