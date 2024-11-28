@@ -1,14 +1,16 @@
 import { NAV_MENU, ROUTES, SITE } from '@/config';
+import { useAuthStore } from '@/stores/useAuthStore';
 import { useState } from 'react';
 import { HeaderLogo } from './components/HeaderLogo';
 import { HeaderLinks } from './components/HeaderMenu';
-import { NavButtons } from './components/NavigationMenu';
+import { NavButtons } from './components/NavigationButtons';
 import {
   ResponsiveMenu,
   ResponsiveMenuButton,
 } from './components/ResponsiveMenu';
 
 function TopBar() {
+  const { isAuthenticated } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -21,13 +23,16 @@ function TopBar() {
         signInRoute={ROUTES.SIGNIN}
         cartRoute={ROUTES.CART}
         onSearch={() => console.log('Search')}
+        isAuthenticated={isAuthenticated}
       />
+
       <ResponsiveMenuButton onClick={toggleMenu} />
       <ResponsiveMenu
         onSearchClick={() => console.log('Search')}
         signInRoute={ROUTES.SIGNIN}
         cartRoute={ROUTES.CART}
         isMenuOpen={isMenuOpen}
+        isAuthenticated={isAuthenticated}
       />
     </div>
   );

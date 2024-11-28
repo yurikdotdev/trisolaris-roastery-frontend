@@ -1,5 +1,8 @@
+import { deleteCookie } from '@/lib/cookie';
+import { setAuthenticated } from '@/stores/useAuthStore';
 import {
   LucideLogIn,
+  LucideLogOut,
   LucideMenu,
   LucideSearch,
   LucideShoppingBag,
@@ -20,6 +23,7 @@ interface ResponsiveMenuProps {
   onSearchClick: () => void;
   signInRoute: string;
   cartRoute: string;
+  isAuthenticated: boolean;
 }
 
 const MenuButton: React.FC<ButtonProps> = ({
@@ -53,14 +57,22 @@ export const ResponsiveMenuButton: React.FC<{ onClick: () => void }> = ({
   </button>
 );
 
+const handleSignOut = () => {
+  setAuthenticated(false);
+  deleteCookie('token');
+
+  window.location.reload();
+};
+
 export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({
   isMenuOpen,
   onSearchClick,
   signInRoute,
   cartRoute,
+  isAuthenticated,
 }) => (
   <div
-    className={`absolute right-4 top-10 border-none rounded-lg border bg-custom-bgLight text-sm font-medium text-custom-textLight shadow-sm dark:border-custom-textDark dark:bg-custom-bgDark dark:text-custom-textDark ${
+    className={`absolute right-4 top-10 rounded-lg border border-none bg-custom-bgLight text-sm font-medium text-custom-textLight shadow-sm dark:border-custom-textDark dark:bg-custom-bgDark dark:text-custom-textDark ${
       isMenuOpen ? 'block' : 'hidden'
     }`}
   >
@@ -76,12 +88,21 @@ export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({
         to={cartRoute}
         className="border-t"
       />
-      <MenuButton
-        icon={<LucideLogIn />}
-        label="Sign in"
-        to={signInRoute}
-        className="border-t"
-      />
+      {isAuthenticated ? (
+        <MenuButton
+          icon={<LucideLogIn />}
+          label="Sign Out"
+          className="border-t"
+          onClick={handleSignOut}
+        />
+      ) : (
+        <MenuButton
+          icon={<LucideLogOut />}
+          label="Sign In"
+          to={signInRoute}
+          className="border-t"
+        />
+      )}
     </div>
   </div>
 );

@@ -4,9 +4,12 @@ import { useProducts } from '@/hooks/useProducts';
 import ErrorLayout from '@/layouts/ErrorLayout';
 import MainLayout from '@/layouts/MainLayout';
 import { convertPrice } from '@/lib/utils';
+import { useAuthStore } from '@/stores/useAuthStore';
 import { useParams } from 'react-router-dom';
 
 function ProductDetail() {
+  const { isAuthenticated } = useAuthStore();
+
   const { productId } = useParams();
   const { data, error, isLoading, getProductById } = useProducts();
   const { setQuantity, handleAddToCart } = useCart();
@@ -36,7 +39,7 @@ function ProductDetail() {
 
   return (
     <MainLayout title={`${product.name} | ${SITE.SITE_NAME}`}>
-      <div className="flex flex-col md:gap-20 gap-6 p-6 md:p-12  md:max-w-7xl md:flex-row">
+      <div className="flex flex-col gap-6 p-6 md:max-w-7xl md:flex-row md:gap-20 md:p-12">
         <img
           src={product.imageUrl}
           className="rounded-lg shadow-sm md:max-w-xl"
@@ -65,12 +68,18 @@ function ProductDetail() {
             />
             <button
               type="submit"
-              className="w-full bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight dark:shadow-stone-800"
+              className="w-full bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight disabled:bg-custom-surface disabled:font-medium disabled:text-custom-textLight disabled:opacity-70 dark:shadow-stone-800"
               onClick={() => handleAddToCart(product)}
+              disabled={!isAuthenticated}
             >
               Add to Cart
             </button>
           </div>
+          {!isAuthenticated && (
+            <p className="w-full ">
+              Sign in to add to cart
+            </p>
+          )}
         </div>
       </div>
     </MainLayout>

@@ -2,10 +2,15 @@ export const SITE = {
   SITE_NAME: 'Trisolaris Roastery Co.',
 };
 
+export const BACKEND_URL = 'http://localhost:3000'
+
 export const API = {
-  PRODUCTS: 'http://localhost:5000/products',
-  USERS: 'http://localhost:5000/users',
-};
+  PRODUCTS: `${BACKEND_URL}/products`,
+  CART: (userId: string) => `${BACKEND_URL}/${userId}/carts`,
+  USERS: `${BACKEND_URL}/users`,
+  SIGNIN: `${BACKEND_URL}/auth/login`,
+  REGISTER: `${BACKEND_URL}/auth/signup`,
+}
 
 export const ROUTES = {
   HOME: '/',
@@ -29,3 +34,8 @@ export const NAV_MENU = [
   { label: 'Learn', route: ROUTES.LEARN },
   { label: 'Locations', route: ROUTES.LOCATIONS },
 ];
+
+export const STORAGE = {
+  CART: 'CART_STORAGE',
+  AUTH: 'AUTH_STORAGE',
+}
