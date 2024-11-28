@@ -3,6 +3,7 @@ import { useCart } from '@/hooks/useCart';
 import { useProducts } from '@/hooks/useProducts';
 import ErrorLayout from '@/layouts/ErrorLayout';
 import MainLayout from '@/layouts/MainLayout';
+import { showToastMessage } from '@/lib/toast';
 import { convertPrice } from '@/lib/utils';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useParams } from 'react-router-dom';
@@ -61,7 +62,7 @@ function ProductDetail() {
           <div className="flex w-full overflow-hidden rounded-lg shadow-sm">
             <input
               type="number"
-              className="w-1/6 bg-custom-bgLight p-4 text-lg text-custom-textLight"
+              className="w-20 appearance-none bg-custom-bgLight p-4 text-lg text-custom-textLight"
               placeholder="1"
               min="1"
               onChange={(e) => setQuantity(parseInt(e.target.value))}
@@ -69,16 +70,17 @@ function ProductDetail() {
             <button
               type="submit"
               className="w-full bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight disabled:bg-custom-surface disabled:font-medium disabled:text-custom-textLight disabled:opacity-70 dark:shadow-stone-800"
-              onClick={() => handleAddToCart(product)}
+              onClick={() => {
+                handleAddToCart(product);
+                showToastMessage('Product added to cart !', 'success');
+              }}
               disabled={!isAuthenticated}
             >
               Add to Cart
             </button>
           </div>
           {!isAuthenticated && (
-            <p className="w-full ">
-              Sign in to add to cart
-            </p>
+            <p className="w-full text-custom-accent">Sign in to add to cart.</p>
           )}
         </div>
       </div>
