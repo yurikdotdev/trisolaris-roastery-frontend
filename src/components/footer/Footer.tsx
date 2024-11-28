@@ -1,4 +1,5 @@
 import { getYear } from '@/lib/utils';
+import DarkModeButton from '../common/DarkModeButton';
 
 function Footer() {
   return (
@@ -11,6 +12,7 @@ function Footer() {
           Trisolaris Roastery Co.
         </p>
         <p className="text-sm text-custom-accent">&copy; {getYear()}</p>
+        <DarkModeButton />
       </div>
     </footer>
   );
