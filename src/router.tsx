@@ -14,6 +14,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Products from './pages/Products/Products';
 import Register from './pages/Register/Register';
 import SignIn from './pages/SignIn/SignIn';
+import Search from './pages/Search/Search';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         path: ROUTES.PRODUCTS,
         element: <Products />,
       },
+      {
+        path: ROUTES.SEARCH,
+        element: <Search />,
+      }
     ],
   },
 ]);
