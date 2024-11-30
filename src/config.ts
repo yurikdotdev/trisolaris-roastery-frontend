@@ -2,15 +2,16 @@ export const SITE = {
   SITE_NAME: 'Trisolaris Roastery Co.',
 };
 
-export const BACKEND_URL = 'http://localhost:3000'
+export const BACKEND_URL = 'https://api-trisolaris.yurik.dev';
 
 export const API = {
   PRODUCTS: `${BACKEND_URL}/products`,
-  CART: (userId: string) => `${BACKEND_URL}/${userId}/carts`,
+  CART: `${BACKEND_URL}/cart`,
+  CART_ITEM: `${BACKEND_URL}/cart/items`,
   USERS: `${BACKEND_URL}/users`,
   SIGNIN: `${BACKEND_URL}/auth/login`,
   REGISTER: `${BACKEND_URL}/auth/signup`,
-}
+};
 
 export const ROUTES = {
   HOME: '/',
@@ -36,6 +37,5 @@ export const NAV_MENU = [
 ];
 
 export const STORAGE = {
-  CART: 'CART_STORAGE',
   AUTH: 'AUTH_STORAGE',
-}
+};

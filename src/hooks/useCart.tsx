@@ -1,56 +1,106 @@
-import { useCartStore } from '@/stores/useCartStore';
+import { API } from '@/config';
+import { fetcherWithToken, fetchWithAuth } from '@/lib/fetcher';
+import { showToastMessage } from '@/lib/toast';
 import { Product } from '@/types';
 import { useState } from 'react';
+import useSWR from 'swr';
+
+export type CartItem = {
+  cartId: string;
+  productId: string;
+  quantity: number;
+};
+
+export type Cart = {
+  id: string;
+  cartItems: CartItem[];
+};
 
 export const useCart = () => {
   const [quantity, setQuantity] = useState(1);
 
-  const cart = useCartStore((state) => state.cart)
-  const addToCart = useCartStore((state) => state.addToCart);
-  const updateQuantity = useCartStore((state) => state.updateQuantity);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const clearCart = useCartStore((state) => state.clearCart)
-  const getTotalPrice = useCartStore((state) => state.getTotalPrice())
+  const { data, mutate } = useSWR<Cart>(API.CART, fetcherWithToken);
 
-  const handleAddToCart = (product: Product) => {
+  const id = data?.id || '';
+  const cartItems = data?.cartItems || [];
+
+  const handleAddToCart = async (product: Product) => {
     if (!product.id) {
       console.error('Product ID is missing');
       return;
     }
 
-    const cartItem = {
-      id: product.id,
-      price: product.price,
+    const cartItem: CartItem = {
+      cartId: id,
+      productId: product.id,
       quantity: quantity,
     };
 
-    addToCart(cartItem);
-    console.log('Cart updated', useCartStore.getState().cart);
+    try {
+      await fetchWithAuth(API.CART_ITEM, {
+        method: 'POST',
+        body: JSON.stringify(cartItem),
+      });
+
+      mutate();
+      showToastMessage('Product added to cart !', 'success');
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
   };
 
-  const handleDeleteItem = (productId: string) => {
-    removeFromCart(productId);
+  const handleDeleteItem = async (productId: string) => {
+    try {
+      await fetchWithAuth(API.CART_ITEM, {
+        method: 'DELETE',
+        body: JSON.stringify({ productId }),
+      });
+
+      mutate();
+      showToastMessage('Product deleted from cart', 'error');
+    } catch (error) {
+      console.error('Error deleting product from cart:', error);
+    }
   };
 
-  const handleQuantityChange = (
+  const handleQuantityChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
     productId: string
   ) => {
     const newQuantity = parseInt(event.target.value);
-    updateQuantity(productId, newQuantity);
+    setQuantity(newQuantity);
+
+    try {
+      await fetchWithAuth(API.CART_ITEM, {
+        method: 'PATCH',
+        body: JSON.stringify({ productId, quantity: newQuantity }),
+      });
+
+      mutate();
+    } catch (error) {
+      console.error('Error updating product quantity in cart:', error);
+    }
   };
 
-  const handleClearCart = () => {
-    clearCart();
-  }
+  const handleClearCart = async () => {
+    try {
+      await fetchWithAuth(API.CART, {
+        method: 'DELETE',
+      });
+
+      mutate();
+      showToastMessage('All products deleted from cart', 'error');
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+    }
+  };
 
   return {
-    cart,
     setQuantity,
+    cartItems,
     handleAddToCart,
-    handleDeleteItem,
     handleQuantityChange,
+    handleDeleteItem,
     handleClearCart,
-    getTotalPrice
   };
 };

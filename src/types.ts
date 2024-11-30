@@ -12,9 +12,10 @@ export type Product = {
 };
 
 export type CartItem = {
-  id: string;
-  price: number;
+  productId: string;
+  cartId: string;
   quantity: number;
+  price: number;
 };
 
 export type User = {
