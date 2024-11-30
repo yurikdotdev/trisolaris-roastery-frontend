@@ -1,6 +1,8 @@
 import ProductContainer from '@/components/product/ProductContainer';
 import { SITE } from '@/config';
 import { useProducts } from '@/hooks/useProducts';
+import ErrorLayout from '@/layouts/ErrorLayout';
+import Loading from '@/layouts/Loading';
 import MainLayout from '@/layouts/MainLayout';
 
 function Products() {
@@ -8,16 +10,16 @@ function Products() {
 
   if (error) {
     console.error('Error fetching data:', error);
-    return <div>Error loading products...</div>;
+    return <ErrorLayout errorCode="500" text="ERROR LOADING PRODUCTS" />;
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
     <MainLayout title={`All Products | ${SITE.SITE_NAME}`}>
-      <ProductContainer products={data} />
+      {data ? <ProductContainer products={data} index={9} /> : <Loading />}
     </MainLayout>
   );
 }

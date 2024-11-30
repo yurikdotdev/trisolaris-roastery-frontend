@@ -1,6 +1,6 @@
 import { ROUTES, SITE } from '@/config';
 import MainLayout from '@/layouts/MainLayout';
-import type { Register } from '@/types/Auth';
+import type { Register } from '@/schemas/Auth';
 import { Form, Link } from 'react-router-dom';
 
 function Register() {

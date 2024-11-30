@@ -1,41 +1,39 @@
+import SectionHeader from '@/components/common/SectionHeader';
+import ProductContainer from '@/components/product/ProductContainer';
 import { SITE } from '@/config';
 import { useCart } from '@/hooks/useCart';
 import { useProducts } from '@/hooks/useProducts';
 import ErrorLayout from '@/layouts/ErrorLayout';
+import Loading from '@/layouts/Loading';
 import MainLayout from '@/layouts/MainLayout';
-import { showToastMessage } from '@/lib/toast';
 import { convertPrice } from '@/lib/utils';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useParams } from 'react-router-dom';
 
 function ProductDetail() {
+  const { productId } = useParams();
   const { isAuthenticated } = useAuthStore();
 
-  const { productId } = useParams();
   const { data, error, isLoading, getProductById } = useProducts();
   const { setQuantity, handleAddToCart } = useCart();
 
   if (!productId) {
-    return <div>Product not found</div>;
-  }
-
-  const product = getProductById(productId);
-
-  if (!product) {
     return <ErrorLayout errorCode="404" text="PRODUCT NOT FOUND" />;
   }
 
+  const product = data ? getProductById(productId) : null;
+
   if (error) {
     console.error('Error fetching product data:', error);
-    return <div>Error loading product details...</div>;
-  }
-
-  if (!data) {
-    return <div>No data</div>;
+    return <ErrorLayout errorCode="500" text="ERROR FETCHING PRODUCT DETAIL" />;
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
+  }
+
+  if (!product) {
+    return <ErrorLayout errorCode="404" text="PRODUCT NOT FOUND" />;
   }
 
   return (
@@ -47,7 +45,7 @@ function ProductDetail() {
           alt={product.name}
         />
 
-        <div className="flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-8">
           <div className="flex-row gap-2 md:flex md:flex-col">
             <h1 className="text-4xl font-bold">{product.name}</h1>
             <p className="text-custom-accent">{product.category}</p>
@@ -72,7 +70,6 @@ function ProductDetail() {
               className="w-full bg-custom-surface p-4 text-lg font-medium text-custom-textLight shadow-stone-200 duration-300 ease-in-out hover:bg-custom-accent hover:font-bold hover:text-custom-bgLight disabled:bg-custom-surface disabled:font-medium disabled:text-custom-textLight disabled:opacity-70 dark:shadow-stone-800"
               onClick={() => {
                 handleAddToCart(product);
-                showToastMessage('Product added to cart !', 'success');
               }}
               disabled={!isAuthenticated}
             >
@@ -84,6 +81,8 @@ function ProductDetail() {
           )}
         </div>
       </div>
+      <SectionHeader title="Related Products" />
+      {data && <ProductContainer products={data} index={3} />}
     </MainLayout>
   );
 }

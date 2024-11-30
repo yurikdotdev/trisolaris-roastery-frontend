@@ -60,8 +60,6 @@ export const ResponsiveMenuButton: React.FC<{ onClick: () => void }> = ({
 const handleSignOut = () => {
   setAuthenticated(false);
   deleteCookie('token');
-
-  window.location.reload();
 };
 
 export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({

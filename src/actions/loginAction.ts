@@ -28,8 +28,6 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
     console.log('Username and password are required');
   }
 
-  console.log(userData);
-
   const response = await fetch(API.SIGNIN, {
     method: 'POST',
     body: JSON.stringify(userData),
@@ -53,8 +51,6 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
   if (!user) {
     console.log('Error logging in user');
   }
-
-  console.log(loginResponse);
 
   setCookie(token, 7);
   setUser(user);

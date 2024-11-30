@@ -1,5 +1,5 @@
 import { API, ROUTES } from '@/config';
-import { Register } from '@/types/Auth';
+import { Register } from '@/schemas/Auth';
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
 
 export const registerAction = async ({ request }: ActionFunctionArgs) => {

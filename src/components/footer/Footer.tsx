@@ -3,7 +3,8 @@ import DarkModeButton from '../common/DarkModeButton';
 
 function Footer() {
   return (
-    <footer className="h-52 w-full bg-custom-bgLight text-custom-textLight dark:bg-custom-bgDark dark:text-custom-textDark">
+    <footer className="h-72 w-full bg-custom-bgLight text-custom-textLight dark:bg-custom-bgDark dark:text-custom-textDark">
+
       <div className="flex h-full w-full flex-col items-center justify-center gap-2">
         <p className="font-roboto text-sm font-light">
           Designed and built by @yurikdotdev
